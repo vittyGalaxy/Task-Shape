@@ -1,5 +1,6 @@
 from matplotlib import pyplot as plt
 import math
+import numpy as np
 
 
 class Shape:
@@ -21,8 +22,14 @@ class Shape:
 
 class Circle(Shape):
     def draw(self):
-        #todo
-        pass
+        circle = plt.Circle((0.5, 0.5), self.number)
+        fig, ax = plt.subplots()
+        ax.axis("equal")
+        ax.set_xlim([(self.number * (-1)), self.number])
+        ax.set_ylim([(self.number * (-1)), self.number])
+
+        ax.add_patch(circle)
+        plt.show()
 
     def calculate_area(self):
         return 3.14 * pow((self.number * 2) / 2, 2)
@@ -52,3 +59,12 @@ class Ellipse(Shape):
 
     def calculate_perimeter(self):
         return 2 * 3.14 * math.sqrt((pow(self.number, 2) + pow(self.number2, 2)) / 2.0)
+
+
+def main():
+    c = Circle(5)
+    print(c.draw())
+
+
+if __name__ == '__main__':
+    main()
