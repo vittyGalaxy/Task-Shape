@@ -40,7 +40,21 @@ class Circle(Shape):
 
 class Parable(Shape):
     def draw(self):
-        pass
+        a = 1
+        b = 0
+        c = 0
+
+        x = np.linspace(-10, 10, 400)
+        y = a * pow(x, 2) + b * x + c
+        plt.plot(x, y, label=f'Parabola: $y = {a}x^2 + {b}x + {c}$')
+
+        plt.xlabel('x')
+        plt.ylabel('y')
+        plt.title("Grafico di una parabola")
+        plt.legend()
+        plt.grid(True)
+
+        plt.show()
 
 
 class Ellipse(Shape):
@@ -63,7 +77,9 @@ class Ellipse(Shape):
 
 def main():
     c = Circle(5)
+    d = Parable(2)
     print(c.draw())
+    print(c.draw(d.draw()))
 
 
 if __name__ == '__main__':
