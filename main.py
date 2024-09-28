@@ -39,10 +39,10 @@ class Circle(Shape):
         plt.show()
 
     def calculate_area(self):
-        return 3.14 * pow((self.number * 2) / 2, 2)
+        return 3.14 * pow(self.r, 2)
 
     def calculate_perimeter(self):
-        return self.number * (2 * 3.14)
+        return self.r * (2 * 3.14)
 
 
 class Parable(Shape):
@@ -113,6 +113,10 @@ def main():
     print(c.draw())
     print(d.draw())
     print(s.draw())
+    print(c.calculate_area())
+    print(c.calculate_perimeter())
+    print(s.calculate_area())
+    print(s.calculate_perimeter())
 
 
 if __name__ == '__main__':
