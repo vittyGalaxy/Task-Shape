@@ -23,13 +23,16 @@ class Shape:
 class Circle(Shape):
     def __init__(self, r):
         super().__init__(r)
-        self.r = r
+
+    def get_r(self):
+        return self.get_number()
 
     def draw(self):
+        r = self.number
         t = np.linspace(0, 2 * np.pi, 400)
-        x = self.r * np.cos(t)
-        y = self.r * np.sin(t)
-        plt.plot(x, y, label=f'Circonferenza: $r = {self.r}$')
+        x = r * np.cos(t)
+        y = r * np.sin(t)
+        plt.plot(x, y, label=f'Circonferenza: $r = {r}$')
         plt.gca().set_aspect('equal')
         plt.xlabel('x')
         plt.ylabel('y')
@@ -39,10 +42,10 @@ class Circle(Shape):
         plt.show()
 
     def calculate_area(self):
-        return 3.14 * pow(self.r, 2)
+        return 3.14 * pow(self.number, 2)
 
     def calculate_perimeter(self):
-        return self.r * (2 * 3.14)
+        return self.number * (2 * 3.14)
 
 
 class Parable(Shape):
@@ -50,6 +53,9 @@ class Parable(Shape):
         super().__init__(a)
         self.b = b
         self.c = c
+
+    def get_a(self):
+        return self.get_number()
 
     def get_b(self):
         return self.b
@@ -80,17 +86,20 @@ class Ellipse(Shape):
     def __init__(self, a, b):
         super().__init__(a)
         self.b = b
-        self.a = self.number
+
+    def get_a(self):
+        return self.get_number()
 
     def get_b(self):
         return self.b
 
     def draw(self):
-        t = np.linspace(0, 2 * np.pi, 400)
 
-        x = self.a * np.cos(t)
+        t = np.linspace(0, 2 * np.pi, 400)
+        a = self.number
+        x = a * np.cos(t)
         y = self.b * np.sin(t)
-        plt.plot(x, y, label=f'Ellisse: $x^2/{self.a^2} + y^2/{self.b^2} = 1$')
+        plt.plot(x, y, label=f'Ellisse: $x^2/{a^2} + y^2/{self.b^2} = 1$')
         plt.gca().set_aspect('equal')
         plt.xlabel('x')
         plt.ylabel('y')
@@ -100,15 +109,15 @@ class Ellipse(Shape):
         plt.show()
 
     def calculate_area(self):
-        return 3.14 * self.a * self.b
+        return 3.14 * self.number * self.b
 
     def calculate_perimeter(self):
-        return 2 * 3.14 * math.sqrt((pow(self.a, 2) + pow(self.b, 2)) / 2.0)
+        return 2 * 3.14 * math.sqrt((pow(self.number, 2) + pow(self.b, 2)) / 2.0)
 
 
 def main():
     c = Circle(5)
-    d = Parable(1, 5, 2)
+    d = Parable(1, 0, 0)
     s = Ellipse(5, 3)
     print(c.draw())
     print(d.draw())
@@ -117,6 +126,12 @@ def main():
     print(c.calculate_perimeter())
     print(s.calculate_area())
     print(s.calculate_perimeter())
+    print(c.get_r())
+    print(d.get_a())
+    print(d.get_b())
+    print(d.get_c())
+    print(s.get_a())
+    print(s.get_b())
 
 
 if __name__ == '__main__':
